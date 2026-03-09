@@ -1,0 +1,4 @@
+id,category,success,retries,execution_time_sec,final_error
+101,Adhesion,False,15,826.09,"The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat."
+102,Stability,False,15,1062.48,Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])
+103,Control,True,7,438.33,

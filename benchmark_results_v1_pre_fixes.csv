@@ -1,0 +1,37 @@
+id,category,success,retries,execution_time_sec,final_error
+1,Scale,True,4,231.08,
+2,Scale,True,1,55.76,
+3,Scale,True,10,566.51,
+4,Scale,False,15,271.13,Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius'
+5,Scale,False,15,1028.59,Python Execution Error: name 'Gear' is not defined
+6,Hollow/Thin,True,1,78.02,
+7,Hollow/Thin,True,3,100.5,
+8,Hollow/Thin,True,2,77.03,
+9,Hollow/Thin,True,5,183.8,
+10,Hollow/Thin,False,15,1020.36,"CRITICAL: The geometry is valid, but you forgot to export! You MUST include these exact two lines at the end of your script:
+export_stl(final_part.part, 'generated_files/generated_part.stl')
+export_step(final_part.part, 'generated_files/generated_part.step')"
+11,Bracket/Holes,False,15,939.04,"User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner."
+12,Bracket/Holes,False,15,882.19,"User requested mounting holes, but no cylindrical cavities were detected. Use boolean subtraction to add holes. HINT TO FIX: You must use the minus operator (-) to subtract a Cylinder from your main body. Example: `hole = Cylinder(radius=2.5, height=50); final_part = main_body - hole`."
+13,Bracket/Holes,True,1,79.23,
+14,Bracket/Holes,False,15,880.57,"Hole Placement Error: Your holes are cutting into the outer edges of the bounding box, creating open semi-circles. HINT TO FIX: You MUST move the Pos(X,Y) coordinates of your subtraction cylinders inward by at least `radius + 2mm` so the holes are fully enclosed by solid material."
+15,Bracket/Holes,False,15,1012.86,Python Execution Error: No module named 'solid'
+16,Stability,True,2,89.38,
+17,Stability,False,15,863.98,Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius_top'
+18,Stability,False,15,1036.03,"CRITICAL: The geometry is valid, but you forgot to export! You MUST include these exact two lines at the end of your script:
+export_stl(final_part.part, 'generated_files/generated_part.stl')
+export_step(final_part.part, 'generated_files/generated_part.step')"
+19,Stability,True,5,317.35,
+20,Stability,False,15,910.68,Python Execution Error: name 'Extrude' is not defined
+21,Overhangs,False,15,1008.47,Python Execution Error: name 'Translate' is not defined
+22,Overhangs,True,2,98.0,
+23,Overhangs,True,2,109.63,
+24,Overhangs,True,1,71.93,
+25,Overhangs,True,1,43.75,
+26,Control,True,1,46.76,
+27,Control,True,1,46.98,
+28,Control,True,1,41.48,
+29,Control,False,15,1040.23,"CRITICAL: The geometry is valid, but you forgot to export! You MUST include these exact two lines at the end of your script:
+export_stl(final_part.part, 'generated_files/generated_part.stl')
+export_step(final_part.part, 'generated_files/generated_part.step')"
+30,Control,False,15,796.37,Python Execution Error: name 'Disk' is not defined

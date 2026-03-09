@@ -1,0 +1,41 @@
+id,category,success,retries,execution_time_sec,final_error
+1,Scale,True,4,227.65,
+2,Scale,True,3,167.81,
+3,Scale,True,3,171.85,
+4,Scale,True,3,82.89,
+5,Scale,True,5,308.64,
+6,Hollow/Thin,False,15,1001.39,"CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).
+
+Original Traceback: Python Execution Error: list index out of range"
+7,Hollow/Thin,True,11,771.26,
+8,Hollow/Thin,False,15,1083.05,"Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides."
+9,Hollow/Thin,True,7,446.43,
+10,Hollow/Thin,True,13,876.04,
+11,Bracket/Holes,True,11,694.02,
+12,Bracket/Holes,False,15,923.49,"CRITICAL: The geometry is valid, but you forgot to export! You MUST include these exact two lines at the end of your script:
+export_stl(final_part, 'generated_files/generated_part.stl')
+export_step(final_part, 'generated_files/generated_part.step')"
+13,Bracket/Holes,False,15,1002.47,"Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure."
+14,Bracket/Holes,True,4,241.31,
+15,Bracket/Holes,False,15,953.69,"CRITICAL API FIX: Do NOT call export() as an object method. Use the global functions: export_stl(final_part, 'generated_files/generated_part.stl') and export_step(final_part, 'generated_files/generated_part.step').
+
+Original Traceback: Python Execution Error: 'Part' object has no attribute 'export'"
+16,Stability,True,1,67.58,
+17,Stability,False,15,917.05,"CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.
+
+Original Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'"
+18,Stability,True,10,659.52,
+19,Stability,True,5,323.61,
+20,Stability,False,15,895.8,"Dimension Mismatch: The part is 10.5mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it."
+21,Overhangs,False,15,928.13,Python Execution Error: Face.extrude() got an unexpected keyword argument 'amount'
+22,Overhangs,True,5,294.71,
+23,Overhangs,False,15,1005.62,"CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *
+
+Original Traceback: Python Execution Error: name 'BuildPart' is not defined"
+24,Overhangs,False,15,1001.3,Python Execution Error: name 'cm' is not defined
+25,Overhangs,True,5,298.02,
+26,Control,True,3,165.61,
+27,Control,True,5,275.25,
+28,Control,True,11,618.06,
+29,Control,True,9,557.82,
+30,Control,True,8,437.27,

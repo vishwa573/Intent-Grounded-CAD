@@ -1,0 +1,4 @@
+id,category,prompt
+101,Adhesion,Make a 20mm 3D printable sphere
+102,Stability,"Make a 3D printable desktop headphone stand. It is made of three blocks: a small 10x10x5mm base box, a 5x5x60mm vertical pillar on top of the base, and a heavy 60x10x5mm horizontal arm at the top extending entirely to the right."
+103,Control,"Create a simple L-bracket but do not add any holes. Do not use fillets."

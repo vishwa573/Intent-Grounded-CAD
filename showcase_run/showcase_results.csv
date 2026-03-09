@@ -1,0 +1,6 @@
+id,category,success,retries,execution_time_sec,final_error
+101,Adhesion,False,22,1228.03,Python Execution Error: Only shapes with equal or greater dimension can be subtracted: not Part (3D) and Face (2D)
+102,Stability,False,22,1528.39,"CRITICAL API FIX: BuildPart does not have an .add() method. Simply call the primitive (e.g., Box()) directly inside the 'with BuildPart():' context to add it to the assembly.
+
+Original Traceback: Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?"
+103,Control,False,22,1343.44,"Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure."

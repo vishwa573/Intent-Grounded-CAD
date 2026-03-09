@@ -1,0 +1,558 @@
+[
+{
+    "prompt_id": "1",
+    "category": "Scale",
+    "prompt_text": "Make a simple box that is 5000mm wide",
+    "success": true,
+    "retries": 4,
+    "execution_time_sec": 227.65,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: name 'Box' is not defined"
+    ]
+},
+{
+    "prompt_id": "2",
+    "category": "Scale",
+    "prompt_text": "Make a tiny cylinder with a radius of 0.001mm",
+    "success": true,
+    "retries": 3,
+    "execution_time_sec": 167.81,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show' is not defined"
+    ]
+},
+{
+    "prompt_id": "3",
+    "category": "Scale",
+    "prompt_text": "Make a simple cube that is 1000mm long",
+    "success": true,
+    "retries": 3,
+    "execution_time_sec": 171.85,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show_object' is not defined"
+    ]
+},
+{
+    "prompt_id": "4",
+    "category": "Scale",
+    "prompt_text": "I want a 2000mm tall cone",
+    "success": true,
+    "retries": 3,
+    "execution_time_sec": 82.89,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius1'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: For Cone(), you MUST use 'top_radius' and 'bottom_radius'. Do not use 'radius'. For Cylinder, use 'radius'.\n\nOriginal Traceback: Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius'"
+    ]
+},
+{
+    "prompt_id": "5",
+    "category": "Scale",
+    "prompt_text": "Create a 0.1mm micro gear",
+    "success": true,
+    "retries": 5,
+    "execution_time_sec": 308.64,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use 'r=' for radius. You MUST type out the full word: 'radius='.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'r'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: Do not use the 'solid' library or OpenSCAD syntax. You MUST use 'build123d' exclusively for all geometry generation.\n\nOriginal Traceback: Python Execution Error: No module named 'solid'",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned."
+    ]
+},
+{
+    "prompt_id": "6",
+    "category": "Hollow/Thin",
+    "prompt_text": "Make a cup with walls that are exactly 0.01mm thick",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1001.39,
+    "final_error": "CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'dia'",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'mm' is not defined",
+        "- Attempt 6 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: name 'mm' is not defined",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: name 'mm' is not defined",
+        "- Attempt 10 (Syntax Fast-Path): CRITICAL API FIX: Do not use 'r=' for radius. You MUST type out the full word: 'radius='.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'r'",
+        "- Attempt 11 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: name 'mm' is not defined",
+        "- Attempt 13 (Syntax Slow-Path): Python Execution Error: name 'difference' is not defined",
+        "- Attempt 14 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 15 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range"
+    ]
+},
+{
+    "prompt_id": "7",
+    "category": "Hollow/Thin",
+    "prompt_text": "Make a solid cylinder but call it a container",
+    "success": true,
+    "retries": 11,
+    "execution_time_sec": 771.26,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 2 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 4 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 6 (Syntax Fast-Path): CRITICAL API FIX: In build123d, Cylinder and Circle use 'radius', not 'diameter'. Divide the requested diameter by 2.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'diameter'",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: __init__(): incompatible constructor arguments. The following argument types are supported:\n    1. OCP.OCP.TopoDS.TopoDS_Iterator()\n    2. OCP.OCP.TopoDS.TopoDS_Iterator(S: OCP.OCP.TopoDS.TopoDS_Shape, cumOri: bool = True, cumLoc: bool = True)\n\nInvoked with: None",
+        "- Attempt 8 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`"
+    ]
+},
+{
+    "prompt_id": "8",
+    "category": "Hollow/Thin",
+    "prompt_text": "Make a simple hollow box with 0.05mm thick walls",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1083.05,
+    "final_error": "Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+    "history": [
+        "- Attempt 1 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 3 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: __init__(): incompatible constructor arguments. The following argument types are supported:\n    1. OCP.OCP.TopoDS.TopoDS_Iterator()\n    2. OCP.OCP.TopoDS.TopoDS_Iterator(S: OCP.OCP.TopoDS.TopoDS_Shape, cumOri: bool = True, cumLoc: bool = True)\n\nInvoked with: None",
+        "- Attempt 5 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 6 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 7 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 8 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: __init__(): incompatible constructor arguments. The following argument types are supported:\n    1. OCP.OCP.TopoDS.TopoDS_Iterator()\n    2. OCP.OCP.TopoDS.TopoDS_Iterator(S: OCP.OCP.TopoDS.TopoDS_Shape, cumOri: bool = True, cumLoc: bool = True)\n\nInvoked with: None",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: __init__(): incompatible constructor arguments. The following argument types are supported:\n    1. OCP.OCP.TopoDS.TopoDS_Iterator()\n    2. OCP.OCP.TopoDS.TopoDS_Iterator(S: OCP.OCP.TopoDS.TopoDS_Shape, cumOri: bool = True, cumLoc: bool = True)\n\nInvoked with: None",
+        "- Attempt 11 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 12 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 13 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 14 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 15 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides."
+    ]
+},
+{
+    "prompt_id": "9",
+    "category": "Hollow/Thin",
+    "prompt_text": "Create a vase with 0.1mm walls",
+    "success": true,
+    "retries": 7,
+    "execution_time_sec": 446.43,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use 'r=' for radius. You MUST type out the full word: 'radius='.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'r'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 4 (Physics): Walls are too thin to manufacture safely. HINT TO FIX: Standard 3D printing requires a minimum wall thickness of 1.2mm. Do NOT change your outer dimensions to fix this! Instead, calculate your inner subtraction shape using strict math: `inner_radius = target_radius - 1.2` (or `inner_length = target_length - 2.4` for boxes). Leave exactly 1.2mm of material on all sides.",
+        "- Attempt 5 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`"
+    ]
+},
+{
+    "prompt_id": "10",
+    "category": "Hollow/Thin",
+    "prompt_text": "Make a bowl but forget to hollow it out",
+    "success": true,
+    "retries": 13,
+    "execution_time_sec": 876.04,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: At least 1 elements required, requested 0, 4",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius1'",
+        "- Attempt 4 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 5 (Syntax Fast-Path): CRITICAL API FIX: Do not use the 'solid' library or OpenSCAD syntax. You MUST use 'build123d' exclusively for all geometry generation.\n\nOriginal Traceback: Python Execution Error: No module named 'solid'",
+        "- Attempt 6 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 7 (Syntax Fast-Path): CRITICAL API FIX: In build123d, Cylinder and Circle use 'radius', not 'diameter'. Divide the requested diameter by 2.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'diameter'",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: __init__(): incompatible constructor arguments. The following argument types are supported:\n    1. OCP.OCP.TopoDS.TopoDS_Iterator()\n    2. OCP.OCP.TopoDS.TopoDS_Iterator(S: OCP.OCP.TopoDS.TopoDS_Shape, cumOri: bool = True, cumLoc: bool = True)\n\nInvoked with: None",
+        "- Attempt 9 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`",
+        "- Attempt 10 (Syntax Fast-Path): CRITICAL API FIX: In build123d, Cylinder and Circle use 'radius', not 'diameter'. Divide the requested diameter by 2.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'diameter'",
+        "- Attempt 11 (Physics): User requested a hollow container, but the generated part is completely solid. Use Boolean Subtraction to hollow it out. HINT TO FIX: `with Locations((0, 0, wall_thickness)): Cylinder(radius=inner_r, height=inner_h, mode=Mode.SUBTRACT)`"
+    ]
+},
+{
+    "prompt_id": "11",
+    "category": "Bracket/Holes",
+    "prompt_text": "Make an L-bracket but just generate a flat plate",
+    "success": true,
+    "retries": 11,
+    "execution_time_sec": 694.02,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: Rectangle() is for 2D BuildSketch. For 3D BuildPart, use Box(length, width, height) or extrude a sketch.\n\nOriginal Traceback: Python Execution Error: BuildPart doesn't have a Rectangle object or operation (Rectangle applies to ['BuildSketch'])",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show_object' is not defined",
+        "- Attempt 4 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 5 (Syntax Fast-Path): CRITICAL API FIX: You are trying to add or subtract the 'BuildPart' object itself! Build your ENTIRE assembly inside ONE SINGLE 'with BuildPart() as p:' block. Do not try to append to 'p'.\n\nOriginal Traceback: Python Execution Error: BuildPart is a builder of Shapes and can't be combined. The object being constructed is accessible via the 'part' attribute.",
+        "- Attempt 6 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 7 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: Do NOT call export_stl() as an object method. Use the global function and pass the solid: export_stl(final_part, 'generated_files/generated_part.stl').\n\nOriginal Traceback: Python Execution Error: 'Solid' object has no attribute 'export_stl'",
+        "- Attempt 9 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner."
+    ]
+},
+{
+    "prompt_id": "12",
+    "category": "Bracket/Holes",
+    "prompt_text": "Make a simple U-bracket that is just a solid block",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 923.49,
+    "final_error": "CRITICAL: The geometry is valid, but you forgot to export! You MUST include these exact two lines at the end of your script:\nexport_stl(final_part, 'generated_files/generated_part.stl')\nexport_step(final_part, 'generated_files/generated_part.step')",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 2 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 3 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: 'NoneType' object has no attribute 'wrapped'",
+        "- Attempt 6 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: You are trying to add or subtract the 'BuildPart' object itself! Build your ENTIRE assembly inside ONE SINGLE 'with BuildPart() as p:' block. Do not try to append to 'p'.\n\nOriginal Traceback: Python Execution Error: BuildPart is a builder of Shapes and can't be combined. The object being constructed is accessible via the 'part' attribute.",
+        "- Attempt 9 (Syntax Fast-Path): CRITICAL API FIX: You tried to access a face in an empty list. Avoid complex face selection like `.faces().sort_by()[-1]`. If you are trying to make a hollow object, use basic Boolean Subtraction instead (outer_shape - inner_shape).\n\nOriginal Traceback: Python Execution Error: list index out of range",
+        "- Attempt 10 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 11 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 12 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 13 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 14 (Syntax Fast-Path): CRITICAL API FIX: Rectangle() is for 2D BuildSketch. For 3D BuildPart, use Box(length, width, height) or extrude a sketch.\n\nOriginal Traceback: Python Execution Error: BuildPart doesn't have a Rectangle object or operation (Rectangle applies to ['BuildSketch'])"
+    ]
+},
+{
+    "prompt_id": "13",
+    "category": "Bracket/Holes",
+    "prompt_text": "Make a bracket with a hole right on the extreme outer edge",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1002.47,
+    "final_error": "Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: name 'FilletEdges' is not defined",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: name 'length' is not defined",
+        "- Attempt 4 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'length' is not defined",
+        "- Attempt 6 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: Rectangle.__init__() got an unexpected keyword argument 'length'",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: Rectangle() is for 2D BuildSketch. For 3D BuildPart, use Box(length, width, height) or extrude a sketch.\n\nOriginal Traceback: Python Execution Error: BuildPart doesn't have a Rectangle object or operation (Rectangle applies to ['BuildSketch'])",
+        "- Attempt 9 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 10 (Physics): User requested mounting holes, but no cylindrical cavities were detected. Use boolean subtraction to add holes. HINT TO FIX: You must use the minus operator (-) to subtract a Cylinder from your main body. Example: `hole = Cylinder(radius=2.5, height=50); final_part = main_body - hole`.",
+        "- Attempt 11 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 12 (Physics): User requested mounting holes, but no cylindrical cavities were detected. Use boolean subtraction to add holes. HINT TO FIX: You must use the minus operator (-) to subtract a Cylinder from your main body. Example: `hole = Cylinder(radius=2.5, height=50); final_part = main_body - hole`.",
+        "- Attempt 13 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 14 (Syntax Fast-Path): CRITICAL API FIX: You are trying to add or subtract the 'BuildPart' object itself! Build your ENTIRE assembly inside ONE SINGLE 'with BuildPart() as p:' block. Do not try to append to 'p'.\n\nOriginal Traceback: Python Execution Error: BuildPart is a builder of Shapes and can't be combined. The object being constructed is accessible via the 'part' attribute.",
+        "- Attempt 15 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure."
+    ]
+},
+{
+    "prompt_id": "14",
+    "category": "Bracket/Holes",
+    "prompt_text": "Make a mounting plate with a cutout that is half outside the edge",
+    "success": true,
+    "retries": 4,
+    "execution_time_sec": 241.31,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Circle() is a 2D object for BuildSketch. To make a 3D cylinder in BuildPart, use Cylinder(radius=..., height=...).\n\nOriginal Traceback: Python Execution Error: BuildPart doesn't have a Circle object or operation (Circle applies to ['BuildSketch'])",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned."
+    ]
+},
+{
+    "prompt_id": "15",
+    "category": "Bracket/Holes",
+    "prompt_text": "Create a simple L-bracket but do not add any holes",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 953.69,
+    "final_error": "CRITICAL API FIX: Do NOT call export() as an object method. Use the global functions: export_stl(final_part, 'generated_files/generated_part.stl') and export_step(final_part, 'generated_files/generated_part.step').\n\nOriginal Traceback: Python Execution Error: 'Part' object has no attribute 'export'",
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: Nothing to fillet",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: name 'FilletEdges' is not defined",
+        "- Attempt 9 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: name 'FilletEdges' is not defined",
+        "- Attempt 11 (Syntax Fast-Path): CRITICAL API FIX: Do NOT call export() as an object method. Use the global functions: export_stl(final_part, 'generated_files/generated_part.stl') and export_step(final_part, 'generated_files/generated_part.step').\n\nOriginal Traceback: Python Execution Error: 'BuildPart' has no attribute 'export'. Did you intend '<BuildPart>.part.export'?",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: name 'FilletEdges' is not defined",
+        "- Attempt 13 (Syntax Fast-Path): CRITICAL API FIX: Do NOT use cadquery. You are strictly a build123d engineer. Use build123d syntax exclusively.\n\nOriginal Traceback: Python Execution Error: No module named 'cadquery'",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: name 'FilletEdges' is not defined",
+        "- Attempt 15 (Syntax Fast-Path): CRITICAL API FIX: Do NOT call export() as an object method. Use the global functions: export_stl(final_part, 'generated_files/generated_part.stl') and export_step(final_part, 'generated_files/generated_part.step').\n\nOriginal Traceback: Python Execution Error: 'Part' object has no attribute 'export'"
+    ]
+},
+{
+    "prompt_id": "16",
+    "category": "Stability",
+    "prompt_text": "Make a T-shape with a 100mm wide top and a 1mm wide bottom base",
+    "success": true,
+    "retries": 1,
+    "execution_time_sec": 67.58,
+    "final_error": null,
+    "history": []
+},
+{
+    "prompt_id": "17",
+    "category": "Stability",
+    "prompt_text": "Make an inverted cone balancing on its sharp tip",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 917.05,
+    "final_error": "CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You are missing the 'height' parameter. Primitives like Box, Cylinder, and Cone MUST specify height/length dimensions explicitly.\n\nOriginal Traceback: Python Execution Error: Cone.__init__() missing 1 required positional argument: 'height'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: For Cone(), you MUST use 'top_radius' and 'bottom_radius'. Do not use 'radius'. For Cylinder, use 'radius'.\n\nOriginal Traceback: Python Execution Error: Cone.__init__() got an unexpected keyword argument 'radius'",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: dir must be provided when extruding non-planar faces",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'to_part' is not defined",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'extrude'. Did you intend '<BuildPart>.part.extrude'?",
+        "- Attempt 7 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 9 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 10 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 11 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 12 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 13 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 14 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'",
+        "- Attempt 15 (Syntax Fast-Path): CRITICAL API FIX: Do not use '.position_at()'. Position objects using the context manager 'with Locations((X, Y, Z)):'.\n\nOriginal Traceback: Python Execution Error: 'Cone' object has no attribute 'position_at'"
+    ]
+},
+{
+    "prompt_id": "18",
+    "category": "Stability",
+    "prompt_text": "Make a heavy 50x50 block cantilevered far off a 5x5 base",
+    "success": true,
+    "retries": 10,
+    "execution_time_sec": 659.52,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: Unexpected keyword arguments: normal",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You are trying to add or subtract the 'BuildPart' object itself! Build your ENTIRE assembly inside ONE SINGLE 'with BuildPart() as p:' block. Do not try to append to 'p'.\n\nOriginal Traceback: Python Execution Error: BuildPart is a builder of Shapes and can't be combined. The object being constructed is accessible via the 'part' attribute.",
+        "- Attempt 4 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned."
+    ]
+},
+{
+    "prompt_id": "19",
+    "category": "Stability",
+    "prompt_text": "Create a basic pyramid balancing upside down",
+    "success": true,
+    "retries": 5,
+    "execution_time_sec": 323.61,
+    "final_error": null,
+    "history": [
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: Do not use 'r=' for radius. You MUST type out the full word: 'radius='.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'r'",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show_object' is not defined"
+    ]
+},
+{
+    "prompt_id": "20",
+    "category": "Stability",
+    "prompt_text": "Make an object with a massive flat top supported by a tiny 1mm pin",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 895.8,
+    "final_error": "Dimension Mismatch: The part is 10.5mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'size'",
+        "- Attempt 4 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: type object 'Location' has no attribute 'PlaneXY'",
+        "- Attempt 6 (Physics): Dimension Mismatch: The part is 100.0mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 7 (Physics): Dimension Mismatch: The part is 100.0mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: Do not use 'r=' for radius. You MUST type out the full word: 'radius='.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'r'",
+        "- Attempt 9 (Physics): Dimension Mismatch: The part is 100.0mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: name 'LocationAlign' is not defined",
+        "- Attempt 11 (Physics): Dimension Mismatch: The part is 10.5mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'size'",
+        "- Attempt 13 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: name 'LocationAlign' is not defined",
+        "- Attempt 15 (Physics): Dimension Mismatch: The part is 10.5mm, but requested 1.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it."
+    ]
+},
+{
+    "prompt_id": "21",
+    "category": "Overhangs",
+    "prompt_text": "Make a flat roof floating exactly 50mm in mid-air above the base",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 928.13,
+    "final_error": "Python Execution Error: Face.extrude() got an unexpected keyword argument 'amount'",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use the 'solid' library or OpenSCAD syntax. You MUST use 'build123d' exclusively for all geometry generation.\n\nOriginal Traceback: Python Execution Error: No module named 'solid'",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'extrude'. Did you intend '<BuildPart>.part.extrude'?",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'combine'",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: unsupported operand type(s) for @: 'Box' and 'Location'",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'Roof' is not defined",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: Expected floats",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: invalid syntax (<string>, line 5)",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: name 'Fillet' is not defined",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: Unexpected keyword arguments: Z",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'center'",
+        "- Attempt 11 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'center'",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'size'",
+        "- Attempt 13 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: Box.__init__() got an unexpected keyword argument 'size'",
+        "- Attempt 15 (Syntax Slow-Path): Python Execution Error: Face.extrude() got an unexpected keyword argument 'amount'"
+    ]
+},
+{
+    "prompt_id": "22",
+    "category": "Overhangs",
+    "prompt_text": "Make a horizontal balcony with no supports underneath",
+    "success": true,
+    "retries": 5,
+    "execution_time_sec": 294.71,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show_object' is not defined",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined"
+    ]
+},
+{
+    "prompt_id": "23",
+    "category": "Overhangs",
+    "prompt_text": "Create a flat table top but forget to add the legs touching the ground",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1005.62,
+    "final_error": "CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'save'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 11 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 13 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'rect'. Did you intend '<BuildPart>.part.rect'?",
+        "- Attempt 15 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined"
+    ]
+},
+{
+    "prompt_id": "24",
+    "category": "Overhangs",
+    "prompt_text": "Make a severe 90-degree overhang jutting sideways from a wall",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1001.3,
+    "final_error": "Python Execution Error: name 'cm' is not defined",
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 10 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 11 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 12 (Syntax Fast-Path): CRITICAL API FIX: You are trying to add or subtract the 'BuildPart' object itself! Build your ENTIRE assembly inside ONE SINGLE 'with BuildPart() as p:' block. Do not try to append to 'p'.\n\nOriginal Traceback: Python Execution Error: BuildPart is a builder of Shapes and can't be combined. The object being constructed is accessible via the 'part' attribute.",
+        "- Attempt 13 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined",
+        "- Attempt 15 (Syntax Slow-Path): Python Execution Error: name 'cm' is not defined"
+    ]
+},
+{
+    "prompt_id": "25",
+    "category": "Overhangs",
+    "prompt_text": "Create a floating cube that doesn't touch the z-min floor at all",
+    "success": true,
+    "retries": 5,
+    "execution_time_sec": 298.02,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: type object 'Part' has no attribute 'to_part'",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: Do not use Translate() or translate(). You MUST position parts using the context manager: 'with Locations((X, Y, Z)):'\n\nOriginal Traceback: Python Execution Error: name 'Translate' is not defined",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: module 'build123d' has no attribute 'Cube'"
+    ]
+},
+{
+    "prompt_id": "26",
+    "category": "Control",
+    "prompt_text": "Make a basic 50x50x5mm plate",
+    "success": true,
+    "retries": 3,
+    "execution_time_sec": 165.61,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned."
+    ]
+},
+{
+    "prompt_id": "27",
+    "category": "Control",
+    "prompt_text": "Create a simple cylinder with a radius of 10 and height of 20",
+    "success": true,
+    "retries": 5,
+    "execution_time_sec": 275.25,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: name 'extrude' is not defined",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: Do NOT use cadquery. You are strictly a build123d engineer. Use build123d syntax exclusively.\n\nOriginal Traceback: Python Execution Error: No module named 'cadquery'"
+    ]
+},
+{
+    "prompt_id": "28",
+    "category": "Control",
+    "prompt_text": "Make a normal 20x20x20 cube",
+    "success": true,
+    "retries": 11,
+    "execution_time_sec": 618.06,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: Box.__init__() missing 2 required positional arguments: 'width' and 'height'",
+        "- Attempt 5 (Physics): Dimension Mismatch: The part is 50.0mm, but requested 20.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: Box.__init__() missing 2 required positional arguments: 'width' and 'height'",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: Do not use or import 'build_part'. The only correct import is: from build123d import *\n\nOriginal Traceback: Python Execution Error: No module named 'build_part'",
+        "- Attempt 9 (Syntax Slow-Path): Python Execution Error: name 'MM' is not defined"
+    ]
+},
+{
+    "prompt_id": "29",
+    "category": "Control",
+    "prompt_text": "Generate a basic L-bracket using built-in addition operator",
+    "success": true,
+    "retries": 9,
+    "execution_time_sec": 557.82,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Slow-Path): Python Execution Error: Invalid positional arguments: (-5, -5)",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 4 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 5 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 6 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show' is not defined",
+        "- Attempt 7 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner."
+    ]
+},
+{
+    "prompt_id": "30",
+    "category": "Control",
+    "prompt_text": "Create a flat disk with radius 15 and height 3",
+    "success": true,
+    "retries": 8,
+    "execution_time_sec": 437.27,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: There is no 'Disk' primitive. To make a disk, simply use 'Cylinder(radius=..., height=...)' with a very small height.\n\nOriginal Traceback: Python Execution Error: name 'Disk' is not defined",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 4 (Physics): Dimension Mismatch: The part is 30.0mm, but requested 15.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 6 (Physics): Dimension Mismatch: The part is 30.0mm, but requested 15.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it."
+    ]
+}
+]

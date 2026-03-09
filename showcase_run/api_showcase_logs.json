@@ -1,0 +1,27 @@
+[
+{
+    "prompt_id": "101",
+    "category": "Adhesion",
+    "prompt_text": "Make a 20mm 3D printable sphere",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 351.25,
+    "final_error": "The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+    "history": [
+        "- Attempt 1 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 2 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 3 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: invalid syntax (<string>, line 1)",
+        "- Attempt 5 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 6 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 7 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: invalid syntax (<string>, line 1)",
+        "- Attempt 9 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 10 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 11 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 12 (Physics): Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure.",
+        "- Attempt 13 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 14 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 15 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat."
+    ]
+}

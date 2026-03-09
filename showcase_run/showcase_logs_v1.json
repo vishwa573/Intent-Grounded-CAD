@@ -1,0 +1,70 @@
+[
+{
+    "prompt_id": "101",
+    "category": "Adhesion",
+    "prompt_text": "Make a 20mm 3D printable sphere",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 826.09,
+    "final_error": "The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: name 'to_part' is not defined",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: export_stl() missing 1 required positional argument: 'file_path'",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: export_stl() missing 1 required positional argument: 'file_path'",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: export_stl() missing 1 required positional argument: 'file_path'",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: export_stl() missing 1 required positional argument: 'file_path'",
+        "- Attempt 8 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 9 (Physics): Dimension Mismatch: The part is 40.0mm, but requested 20.0mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it.",
+        "- Attempt 10 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 11 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?",
+        "- Attempt 13 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat.",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?",
+        "- Attempt 15 (Physics): The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat."
+    ]
+},
+{
+    "prompt_id": "102",
+    "category": "Stability",
+    "prompt_text": "Make a 3D printable desktop headphone stand. It is made of 3 blocks: a small 10x10x5mm base box, a 5x5x60mm vertical pillar on top of the base, and a heavy 60x10x5mm horizontal arm at the top extending entirely to the right.",
+    "success": false,
+    "retries": 15,
+    "execution_time_sec": 1062.48,
+    "final_error": "Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])",
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 2 (Syntax Slow-Path): Python Execution Error: 'BuildPart' has no attribute 'add'. Did you intend '<BuildPart>.part.add'?",
+        "- Attempt 3 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 4 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 5 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 6 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 7 (Syntax Slow-Path): Python Execution Error: 'Part' object has no attribute 'add'",
+        "- Attempt 8 (Syntax Slow-Path): Python Execution Error: name 'MoveTo' is not defined",
+        "- Attempt 9 (Syntax Fast-Path): CRITICAL API FIX: In build123d, Cylinder and Circle use 'radius', not 'diameter'. Divide the requested diameter by 2.\n\nOriginal Traceback: Python Execution Error: Cylinder.__init__() got an unexpected keyword argument 'diameter'",
+        "- Attempt 10 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol",
+        "- Attempt 11 (Physics): The generated shape is non-manifold (not watertight) or has zero volume. HINT TO FIX: Simplify your boolean operations or ensure no faces are self-intersecting.",
+        "- Attempt 12 (Syntax Slow-Path): Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])",
+        "- Attempt 13 (Syntax Slow-Path): Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])",
+        "- Attempt 14 (Syntax Slow-Path): Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])",
+        "- Attempt 15 (Syntax Slow-Path): Python Execution Error: BuildSketch doesn't have a Box object or operation (Box applies to ['BuildPart'])"
+    ]
+},
+{
+    "prompt_id": "103",
+    "category": "Control",
+    "prompt_text": "Create a simple L-bracket but do not add any holes. Do not use fillets.",
+    "success": true,
+    "retries": 7,
+    "execution_time_sec": 438.33,
+    "final_error": null,
+    "history": [
+        "- Attempt 1 (Syntax Fast-Path): CRITICAL API FIX: Do not use visualizers like show() or show_object(). Just assign the geometry to 'final_part'.\n\nOriginal Traceback: Python Execution Error: name 'show' is not defined",
+        "- Attempt 2 (Syntax Fast-Path): CRITICAL API FIX: You must assign your final geometry to a variable exactly named 'final_part'. Do not name it 'final_shape' or anything else.\n\nOriginal Traceback: Python Execution Error: The variable 'final_part' (or 'part') was not assigned.",
+        "- Attempt 3 (Syntax Fast-Path): CRITICAL API FIX: You forgot to import the library! Every script MUST start with: from build123d import *\n\nOriginal Traceback: Python Execution Error: name 'BuildPart' is not defined",
+        "- Attempt 4 (Physics): User requested a bracket, but you generated a flat plate or solid block. A bracket must have horizontal and vertical flanges (an L-shape or U-shape). HINT TO FIX: Create an L-bracket by combining two boxes using the addition operator `+`. Ensure one box is vertical and one is horizontal, and they share a corner.",
+        "- Attempt 5 (Syntax Fast-Path): CRITICAL API FIX: You typed 'with Location'. You MUST use the plural 'with Locations((X, Y, Z)):' to open the context manager.\n\nOriginal Traceback: Python Execution Error: 'Location' object does not support the context manager protocol"
+    ]
+}
+]
