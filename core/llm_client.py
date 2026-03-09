@@ -37,7 +37,7 @@ def generate_response(prompt_text, provider="gemini"):
             print("Gemini API not configured or google-generativeai not installed.")
             return None
         
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-flash-latest')
         
         while True:
             try:
@@ -47,7 +47,15 @@ def generate_response(prompt_text, provider="gemini"):
             except Exception as e:
                 error_str = str(e).lower()
                 if "429" in error_str or "quota" in error_str or "rate limit" in error_str:
-                    print(f"Gemini Rate limit hit. Sleeping for 60 seconds... ({e})")
+                    if "tokens per minute" in error_str or "tpm" in error_str:
+                        print(f"🛑 GEMINI TPM LIMIT HIT (Tokens per minute exceeded). Sleeping for 60 seconds...")
+                    elif "requests per minute" in error_str or "rpm" in error_str:
+                        print(f"🛑 GEMINI RPM LIMIT HIT (Requests per minute exceeded). Sleeping for 60 seconds...")
+                    elif "requests per day" in error_str or "rpd" in error_str:
+                        print(f"🔴 FATAL: GEMINI DAILY RPD LIMIT HIT. Stopping execution.")
+                        return None
+                    else:
+                        print(f"🛑 Gemini Rate limit / Quota hit. Sleeping for 60 seconds... ({e})")
                     time.sleep(60)
                 else:
                     print(f"Gemini API Error: {e}")
@@ -73,7 +81,15 @@ def generate_response(prompt_text, provider="gemini"):
             except Exception as e:
                 error_str = str(e).lower()
                 if "rate limit" in error_str or "429" in error_str:
-                    print("Groq Rate limit hit. Sleeping for 60 seconds...")
+                    if "tokens per minute" in error_str or "tpm" in error_str:
+                        print(f"🛑 GROQ TPM LIMIT HIT (Tokens per minute exceeded). Sleeping for 60 seconds...")
+                    elif "requests per minute" in error_str or "rpm" in error_str:
+                        print(f"🛑 GROQ RPM LIMIT HIT (Requests per minute exceeded). Sleeping for 60 seconds...")
+                    elif "requests per day" in error_str:
+                        print(f"🔴 FATAL: GROQ DAILY RPD LIMIT HIT. Stopping execution.")
+                        return None
+                    else:
+                        print(f"🛑 Groq Rate limit hit. Sleeping for 60 seconds... ({e})")
                     time.sleep(60)
                 else:
                     print(f"Groq API Error: {e}")

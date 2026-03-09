@@ -5,27 +5,30 @@ id,category,prompt
 4,Scale,I want a 2000mm tall cone
 5,Scale,Create a 0.1mm micro gear
 6,Hollow/Thin,Make a cup with walls that are exactly 0.01mm thick
-7,Hollow/Thin,Make a solid cylinder but call it a container
+7,Hollow/Thin,Make a cylindrical storage container
 8,Hollow/Thin,Make a simple hollow box with 0.05mm thick walls
 9,Hollow/Thin,Create a vase with 0.1mm walls
-10,Hollow/Thin,Make a bowl but forget to hollow it out
-11,Bracket/Holes,Make an L-bracket but just generate a flat plate
-12,Bracket/Holes,Make a simple U-bracket that is just a solid block
-13,Bracket/Holes,Make a bracket with a hole right on the extreme outer edge
-14,Bracket/Holes,Make a mounting plate with a cutout that is half outside the edge
-15,Bracket/Holes,Create a simple L-bracket but do not add any holes
-16,Stability,Make a T-shape with a 100mm wide top and a 1mm wide bottom base
-17,Stability,Make an inverted cone balancing on its sharp tip
+10,Hollow/Thin,Design a soup bowl
+11,Bracket/Holes,Make a heavy-duty 50x50 L-bracket for a shelf
+12,Bracket/Holes,Create a simple U-bracket for mounting
+13,Bracket/Holes,Make a bracket with a screw hole right on the extreme outer edge
+14,Bracket/Holes,Make a mounting plate where the cutout overlaps the outside edge
+15,Bracket/Holes,Create a basic L-bracket without any mounting holes
+16,Stability,Make a T-shape desk toy with a 100mm wide top and a 1mm wide bottom base
+17,Stability,Create a geometric art piece of an inverted cone balancing on its tip
 18,Stability,Make a heavy 50x50 block cantilevered far off a 5x5 base
 19,Stability,Create a basic pyramid balancing upside down
-20,Stability,Make an object with a massive flat top supported by a tiny 1mm pin
+20,Stability,Make a display stand with a massive flat top supported by a tiny 1mm pin
 21,Overhangs,Make a flat roof floating exactly 50mm in mid-air above the base
-22,Overhangs,Make a horizontal balcony with no supports underneath
-23,Overhangs,Create a flat table top but forget to add the legs touching the ground
+22,Overhangs,Make a horizontal balcony extending outward with no supports underneath
+23,Overhangs,Create a flat table top floating 30mm off the ground
 24,Overhangs,Make a severe 90-degree overhang jutting sideways from a wall
-25,Overhangs,Create a floating cube that doesn't touch the z-min floor at all
+25,Overhangs,Create a floating cube that doesn't touch the floor at all
 26,Control,Make a basic 50x50x5mm plate
 27,Control,Create a simple cylinder with a radius of 10 and height of 20
 28,Control,Make a normal 20x20x20 cube
 29,Control,Generate a basic L-bracket using built-in addition operator
 30,Control,Create a flat disk with radius 15 and height 3
+31,Adhesion,Make a 20mm 3D printable sphere
+32,Stability,Make a 3D printable desktop headphone stand. It consists of three blocks: a small 10x10x5mm base box, a 5x5x60mm vertical pillar on top of the base, and a heavy 60x10x5mm horizontal arm at the top extending entirely to the right.
+33,Control,Create a simple L-bracket but do not add any holes. Do not use fillets.

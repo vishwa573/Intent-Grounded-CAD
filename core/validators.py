@@ -12,24 +12,33 @@ def extract_dimensions(prompt):
 def extract_design_intent_llm(prompt: str) -> dict:
     """
     Deterministic intent extraction to prevent LLM hallucinations.
+    Updated with organic dataset keywords.
     """
     prompt_lower = prompt.lower()
     
     intent = {
-        "is_bracket": any(word in prompt_lower for word in ["bracket", "l-bracket", "u-bracket"]),
-        "is_container": any(word in prompt_lower for word in ["cup", "bowl", "hollow", "pipe", "vase", "container"]),
+        "is_bracket": any(word in prompt_lower for word in ["bracket", "l-bracket", "u-bracket", "mounting", "plate", "shelf mount"]),
+        "is_container": any(word in prompt_lower for word in ["cup", "bowl", "hollow", "pipe", "vase", "container", "box"]),
         "requires_holes": any(word in prompt_lower for word in ["hole", "drill", "screw", "mount"]) and not any(neg in prompt_lower for neg in ["no hole", "without hole", "do not add", "forget to add"]),
-        "is_3d_printable": any(word in prompt_lower for word in ["3d print", "fdm", "printable", "stand"])
+        "is_3d_printable": any(word in prompt_lower for word in ["3d print", "fdm", "printable", "stand", "toy"])
     }
     
-    # Extract the largest number in the prompt as the target dimension constraint
+    # 4. Dimension Safety (target_dimension)
     numbers = [float(n) for n in re.findall(r'\b\d+(?:\.\d+)?\b', prompt)]
-    intent["target_dimension"] = max(numbers) if numbers else None
+    
+    # If the user explicitly asks for a single scaled dimension (e.g. '5000mm length' or '0.001mm radius')
+    # and NO OTHER dimensions are present, we strictly enforce it.
+    if len(numbers) == 1:
+        intent["target_dimension"] = numbers[0]
+    else:
+        # If there are multiple dimensions (e.g., '50x50x5mm plate'), we set target_dimension to None 
+        # to avoid the simple 1D bbox check from flagging perfectly valid multi-dimensional boxes.
+        intent["target_dimension"] = None
     
     print(f"Deterministic Intent Extracted: {intent}")
     return intent
 
-def validate_geometry(part, intent=None, user_prompt=""):
+def validate_geometry(part, intent=None, user_prompt="", z_offset=0.0):
     """
     Physics and Engineering Validator for build123d parts.
     Checks against LLM-extracted intent and physical constraints.
@@ -83,11 +92,12 @@ def validate_geometry(part, intent=None, user_prompt=""):
             
     if target:
         if max_actual_dim > (target * 1.5) or max_actual_dim < (target * 0.5):
+            scalar = target / max_actual_dim if max_actual_dim > 0 else 1.0
             return False, {
                 "error_type": "ScaleViolation",
                 "actual_size": round(max_actual_dim, 2),
                 "requested_size": target,
-                "message": f"Dimension Mismatch: The part is {round(max_actual_dim, 2)}mm, but requested {target}mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: If you are using primitive shapes like Sphere, Cylinder, or Cone, remember that the parameter is usually 'radius', not 'diameter' or 'width'. If the requested size is X, your radius should probably be X/2. Do not blindly double the size if you are trying to shrink it."
+                "message": f"Dimension Mismatch: The part is {round(max_actual_dim, 2)}mm, but requested {target}mm. (Allowed range: 0.5x - 1.5x). HINT TO FIX: Multiply your base dimensions (length, width, or radius) by exactly {scalar:.2f}. For example, if you used radius=10, change it to radius={round(10*scalar, 2)}."
             }
 
     # --- CONTAINER CHECK --- 
@@ -165,10 +175,26 @@ def validate_geometry(part, intent=None, user_prompt=""):
             base_face = faces[0]
             base_bbox = base_face.bounding_box()
             if not (base_bbox.min.X <= center.X <= base_bbox.max.X) or not (base_bbox.min.Y <= center.Y <= base_bbox.max.Y):
+                # Calculate required expansion (v_x, v_y) to safely enclose the center of mass
+                v_x = 0.0
+                v_y = 0.0
+                
+                if center.X > base_bbox.max.X:
+                    v_x = center.X - base_bbox.max.X + 2.0  # Widen right by deficit + 2mm margin
+                elif center.X < base_bbox.min.X:
+                    v_x = base_bbox.min.X - center.X + 2.0  # Widen left 
+                    
+                if center.Y > base_bbox.max.Y:
+                    v_y = center.Y - base_bbox.max.Y + 2.0  # Widen forward
+                elif center.Y < base_bbox.min.Y:
+                    v_y = base_bbox.min.Y - center.Y + 2.0  # Widen backward
+
+                dist = (v_x**2 + v_y**2)**0.5
+                
                 return False, {
                     "error_type": "FunctionalViolation",
                     "issue": "Stability",
-                    "message": "Center of mass is outside the base footprint, meaning the object will tip over! HINT TO FIX: You MUST drastically increase the dimensions of your bottom-most base shape (e.g., increase the length and width of the base Box to at least match the overhang) so it safely supports the entire structure."
+                    "message": f"Stability Error: The Center of Mass (X={center.X:.2f}, Y={center.Y:.2f}) is {dist:.2f}mm outside the support base's footprint. The object will tip over! HINT TO FIX: You MUST drastically widen the bottom-most Box. Increase your base width (X) by {v_x:.2f}mm and depth (Y) by {v_y:.2f}mm so it safely supports the heavy cantilever limits."
                 }
     except:
         return False, {
@@ -187,10 +213,16 @@ def validate_geometry(part, intent=None, user_prompt=""):
                 lowest_face = bottom_faces[0]
                 # Safely check if the lowest face is a flat plane
                 if str(lowest_face.geom_type) != "PLANE":
+                    
+                    if abs(z_offset) > 0.1:
+                        error_msg = f"Your part does not have a flat base, AND it was floating at Z={z_offset:.2f}. Although the system auto-grounded it for this test, you MUST fix your code logic. Use Locations((0, 0, -{z_offset:.2f})) or adjust your subtraction box to ensure the base is flat and at exactly Z=0."
+                    else:
+                        error_msg = "The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat."
+                        
                     return False, {
                         "error_type": "EngineeringViolation",
                         "issue": "Printability / Adhesion",
-                        "message": "The part does not have a flat base on the XY plane (Z-min), which is required for 3D printing adhesion. HINT TO FIX: Slice a small amount off the bottom using boolean subtraction so it sits flat."
+                        "message": error_msg
                     }
 
             # 2. Overhang Validator (The 45-Degree Rule)
