@@ -18,7 +18,7 @@ def extract_design_intent_llm(prompt: str) -> dict:
     
     intent = {
         "is_bracket": any(word in prompt_lower for word in ["bracket", "l-bracket", "u-bracket", "mounting", "plate", "shelf mount"]),
-        "is_container": any(word in prompt_lower for word in ["cup", "bowl", "hollow", "pipe", "vase", "container", "box"]),
+        "is_container": any(word in prompt_lower for word in ["cup", "bowl", "hollow", "pipe", "vase", "container"]),
         "requires_holes": any(word in prompt_lower for word in ["hole", "drill", "screw", "mount"]) and not any(neg in prompt_lower for neg in ["no hole", "without hole", "do not add", "forget to add"]),
         "is_3d_printable": any(word in prompt_lower for word in ["3d print", "fdm", "printable", "stand", "toy"])
     }
@@ -212,7 +212,7 @@ def validate_geometry(part, intent=None, user_prompt="", z_offset=0.0):
             if bottom_faces:
                 lowest_face = bottom_faces[0]
                 # Safely check if the lowest face is a flat plane
-                if str(lowest_face.geom_type) != "PLANE":
+                if "PLANE" not in str(lowest_face.geom_type).upper():
                     
                     if abs(z_offset) > 0.1:
                         error_msg = f"Your part does not have a flat base, AND it was floating at Z={z_offset:.2f}. Although the system auto-grounded it for this test, you MUST fix your code logic. Use Locations((0, 0, -{z_offset:.2f})) or adjust your subtraction box to ensure the base is flat and at exactly Z=0."

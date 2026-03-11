@@ -5,10 +5,10 @@ import time
 from dotenv import load_dotenv
 
 # --- CONFIGURATION ---
-LLM_PROVIDER = "groq"  # Options: "gemini", "groq", "local"
+LLM_PROVIDER = "local"  # Options: "gemini", "groq", "local"
 USE_RAG = True          # Set to False to disable RAG (saves tokens for Groq)
 MAX_RETRIES = 5
-PROMPT_TYPE = "groq" # Options: "gemini", "groq"
+PROMPT_TYPE = "local" # Options: "gemini", "groq"
 
 # Step 1: Setup and Initialization
 load_dotenv()
@@ -79,6 +79,11 @@ def run_unified_showcase(input_csv):
             )
 
             execution_time = round(time.time() - start_time, 2)
+            
+            success = result.get('success', False)
+            retries = result.get('retries', 0)
+            final_error = result.get('final_error', None)
+            history = result.get('history', [])
             
             res_dict = {
                 'id': prompt_id,

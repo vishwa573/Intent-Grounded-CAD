@@ -24,29 +24,43 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
             base_prompt_text = PROMPT_GROQ
         else:
             base_prompt_text = PROMPT_LOCAL
-        formatting_anchor = "\n\nCRITICAL: Output ONLY the raw Python script inside ```python ... ``` blocks. No explanations. No markdown outside the block."
-        
+
+        retrieved_context = []
         if use_rag:
             print("Retrieving official build123d documentation...")
-            retrieved_context = retrieve_context(user_prompt, k=1) 
+            retrieved_context = retrieve_context(user_prompt, k=2) 
             if retrieved_context:
-                rag_block = "\n\n".join(retrieved_context)
-                base_prompt = f"{base_prompt_text}\n\n--- OFFICIAL BUILD123D DOCS ---\n{rag_block}\n-------------------------------\n\nUSER REQUEST: {user_prompt}"
                 print("RAG Context successfully injected into prompt.")
             else:
-                base_prompt = f"{base_prompt_text}\n\nUSER REQUEST: {user_prompt}"
                 print("No specific RAG context found. Proceeding with default prompt.")
-        else:
-            base_prompt = f"{base_prompt_text}\n\nUSER REQUEST: {user_prompt}"
-            
-        current_prompt = f"{base_prompt}{formatting_anchor}"
+        
+        # Format the entire prompt structure into a clean JSON string to help 7B models strictly categorize context
+        prompt_data = {
+            "system_instructions": base_prompt_text.strip(),
+            "retrieved_documentation": "\n\n".join(retrieved_context) if use_rag and retrieved_context else "None",
+            "user_request": user_prompt,
+            "formatting_rules": "CRITICAL: Output ONLY the raw Python script inside ```python ... ``` blocks. No explanations. No markdown outside the block."
+        }
+        
+        current_prompt = json.dumps(prompt_data, indent=2)
 
         output_dir = os.path.join(run_dir, "models", str(prompt_id))
         os.makedirs(output_dir, exist_ok=True)
         
         # 2. Agent 1 (Planner) extracts intent
         design_intent = extract_design_intent_llm(user_prompt)
-        print(f"Agent 1 (Planner) extracted intent: {json.dumps(design_intent, indent=2)}")
+        requires_blueprint = ""
+        # Identify the blueprint type for forced tool execution
+        if 'sphere' in user_prompt.lower(): requires_blueprint = "sphere"
+        elif 'stand' in user_prompt.lower() or 'cantilever' in user_prompt.lower(): requires_blueprint = "cantilever"
+        elif 'bracket' in user_prompt.lower(): requires_blueprint = "bracket"
+        elif design_intent.get('is_container'): requires_blueprint = "hollow_container"
+        elif 'overhang' in user_prompt.lower() or 'floating' in user_prompt.lower() or 'balcony' in user_prompt.lower(): requires_blueprint = "overhang_support"
+        elif 'cone' in user_prompt.lower(): requires_blueprint = "cone"
+        elif 'cube' in user_prompt.lower() or 'box' in user_prompt.lower() or 'plate' in user_prompt.lower() or 'block' in user_prompt.lower(): requires_blueprint = "cube"
+        elif 'cylinder' in user_prompt.lower() or 'disk' in user_prompt.lower(): requires_blueprint = "cylinder"
+        elif 'gear' in user_prompt.lower(): requires_blueprint = "gear"
+        elif 'pyramid' in user_prompt.lower(): requires_blueprint = "pyramid"
         
         error_history = []
         last_known_error = "None" 
@@ -57,7 +71,7 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
             print(f"\n--- Attempt {attempt + 1} of {max_retries} ---")
             print(f"Agent 2 (Coder) is thinking... (Calling {provider.upper()} API)")
             
-            response_text = generate_response(current_prompt, provider=provider)
+            response_text = generate_response(current_prompt, provider=provider, force_tool=requires_blueprint, error_history=error_history)
             prompt_updated_in_error = False
             
             if not response_text:
@@ -79,6 +93,9 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                     code_block = match.group(1).strip()
                     
             if code_block:
+                # Strip rogue markdown tags that might have sneaked into the extraction
+                code_block = code_block.replace("```python", "").replace("```", "").strip()
+                
                 print("\n" + "="*40)
                 print(f"GENERATED CODE (Attempt {attempt + 1}):\n{code_block}")
                 print("="*40 + "\n")
@@ -118,7 +135,7 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                         physics_errors_caught += 1
                         error_msg = report.get("message", "Unknown Validation Error")
                         print(f"Validation Failed: {error_msg}")
-                        error_history.append(f"- Attempt {attempt + 1} (Physics): {error_msg}")
+                        error_history.append({"attempt": attempt + 1, "type": "PhysicsValidation", "details": report})
                         for f in os.listdir(output_dir):
                             os.remove(os.path.join(output_dir, f))
                             
@@ -127,7 +144,7 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                         step_file = next((f for f in files_created if f.endswith('.step')), None)
                         stl_file = next((f for f in files_created if f.endswith('.stl')), None)
 
-                        if step_file or stl_file:
+                        if step_file and stl_file:
                             print(f"Success! Model generated and validated on attempt {attempt + 1}.")
                             log_experiment(user_prompt, design_intent, "SUCCESS", attempt + 1)
                             return {
@@ -152,22 +169,11 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                     if "CRITICAL API FIX" in smart_error:
                         print("Guardrail caught known hallucination! Fast-tracking fix...")
                         error_msg = smart_error
-                        error_history.append(f"- Attempt {attempt + 1} (Syntax Fast-Path): {error_msg}")
+                        error_history.append({"attempt": attempt + 1, "type": "SyntaxError", "message": error_msg})
                         
-                        def format_condensed_history(history_list):
-                            if not history_list: return ""
-                            if len(history_list) == 1: return history_list[0]
-                            condensed = []
-                            for h in history_list[:-1]:
-                                if len(h) > 150:
-                                    condensed.append(h[:147] + "...")
-                                else:
-                                    condensed.append(h)
-                            condensed.append(history_list[-1]) # Keep latest full
-                            return "\n".join(condensed)
-
-                        history_text = format_condensed_history(error_history)
-                        current_prompt = f"{base_prompt}\n\n[PAST FAILED ATTEMPTS - DO NOT REPEAT THESE MISTAKES]:\n{history_text}\n\n[ATTEMPT {attempt + 1} FAILED. FIX THIS ERROR:]\n{error_msg}{formatting_anchor}"
+                        prompt_data["error_history"] = error_history
+                        prompt_data["current_objective"] = "You failed the last attempt. Look at the JSON error, CHANGE your code mathematically, and try again. Do not output the same code twice."
+                        current_prompt = json.dumps(prompt_data, indent=2)
                     
                     else:
                         print(f"Unknown error. USE_RAG is {use_rag}.")
@@ -177,25 +183,13 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                             rag_snippet = error_docs[0] if error_docs else ""
                             
                         error_msg = raw_error
-                        error_history.append(f"- Attempt {attempt + 1} (Syntax Slow-Path): {error_msg}")
+                        error_history.append({"attempt": attempt + 1, "type": "SyntaxError", "message": error_msg})
                         
-                        def format_condensed_history(history_list):
-                            if not history_list: return ""
-                            if len(history_list) == 1: return history_list[0]
-                            condensed = []
-                            for h in history_list[:-1]:
-                                if len(h) > 150:
-                                    condensed.append(h[:147] + "...")
-                                else:
-                                    condensed.append(h)
-                            condensed.append(history_list[-1]) # Keep latest full
-                            return "\n".join(condensed)
-
-                        history_text = format_condensed_history(error_history)
-                        current_prompt = f"{base_prompt}\n\n[PAST FAILED ATTEMPTS - DO NOT REPEAT THESE MISTAKES]:\n{history_text}\n\n[ATTEMPT {attempt + 1} FAILED. FIX THIS ERROR:]\n{raw_error}"
+                        prompt_data["error_history"] = error_history
+                        prompt_data["current_objective"] = "You failed the last attempt. Look at the JSON error, CHANGE your code mathematically, and try again. Do not output the same code twice."
                         if rag_snippet:
-                            current_prompt += f"\n[RELEVANT DOCS TO FIX ERROR:]\n{rag_snippet}"
-                        current_prompt += formatting_anchor
+                            prompt_data["documentation_snippet"] = rag_snippet
+                        current_prompt = json.dumps(prompt_data, indent=2)
                     
                     prompt_updated_in_error = True
                     print(f"Code Execution Failed: {raw_error}")
@@ -206,22 +200,10 @@ def generate_cad_part(user_prompt, prompt_id="default", run_dir="generated_files
                 if error_msg:
                     print(f"Sending error back to LLM... ({error_msg[:100]}...)")
                     
-                    def format_condensed_history(history_list):
-                        if not history_list: return ""
-                        if len(history_list) == 1: return history_list[0]
-                        condensed = []
-                        for h in history_list[:-1]:
-                            if len(h) > 150:
-                                condensed.append(h[:147] + "...")
-                            else:
-                                condensed.append(h)
-                        condensed.append(history_list[-1]) # Keep latest full
-                        return "\n".join(condensed)
-
-                    history_text = format_condensed_history(error_history)
-                    
                     if not prompt_updated_in_error:
-                        current_prompt = f"{base_prompt}\n\n[PAST FAILED ATTEMPTS - DO NOT REPEAT THESE MISTAKES]:\n{history_text}\n\n[ATTEMPT {attempt + 1} FAILED. FIX THIS ERROR:]\n{error_msg}{formatting_anchor}"
+                        prompt_data["error_history"] = error_history
+                        prompt_data["current_objective"] = "You failed the last attempt. Look at the JSON error, CHANGE your code mathematically, and try again. Do not output the same code twice."
+                        current_prompt = json.dumps(prompt_data, indent=2)
             else:
                 print("Max retries reached. The agent could not fix the code.")
                 log_experiment(user_prompt, design_intent, "FAILED", max_retries, last_known_error)

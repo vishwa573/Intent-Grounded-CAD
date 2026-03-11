@@ -6,3 +6,6 @@ __pycache__/
 .streamlit/
 gemini_v*/
 groq_v*/
+showcase_run/
+results/
+chroma_db/
