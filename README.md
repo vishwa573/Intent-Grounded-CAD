@@ -25,8 +25,6 @@
 10. [How It Works](#how-it-works)
 11. [Supported Shapes & Constraints](#supported-shapes--constraints)
 12. [Benchmarking & Evaluation](#benchmarking--evaluation)
-13. [Research & Publication](#research--publication)
-
 ---
 
 ## Overview
