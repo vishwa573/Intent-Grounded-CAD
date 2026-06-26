@@ -423,21 +423,5 @@ python regen_user_figs_huge.py
 
 ---
 
-## Research & Publication
-
-This project is the implementation for the research paper:
-
-> **"Intent-Grounded Self-Correcting AI Pipeline for Automated CAD Generation"**
-
-Key contributions documented in the paper:
-- Multi-agent AI pipeline with deterministic intent extraction
-- Physics-grounded validation with 7-layer constraint enforcement
-- Guardrail interception for LLM API hallucination correction
-- RAG-augmented prompting from official CAD library documentation
-- Comparative benchmarking across Gemini 2.0 Flash, Groq LLaMA-3.3-70B, and Ollama Qwen2.5-Coder
-- Statistical analysis: Wilson confidence intervals, McNemar's significance test, retry iteration distribution
-
----
-
 Author
 Vishwa Sundar S
